@@ -1,4 +1,10 @@
-import { Calculator, Landmark, ReceiptText } from 'lucide-react';
+import {
+  ArrowLeftRight,
+  Calculator,
+  CreditCard,
+  Landmark,
+  ReceiptText,
+} from 'lucide-react';
 
 import ToolCard from '../components/ui/tool-card';
 
@@ -34,6 +40,20 @@ export default function HomePage() {
           to='/loan'
           icon={<Landmark size={34} className='text-violet-600' />}
           gradient='bg-gradient-to-r from-violet-500 to-purple-600'
+        />
+        <ToolCard
+          title='Exchange Rate'
+          description='Convert between currencies using live exchange rates.'
+          to='/exchange-rate'
+          icon={<ArrowLeftRight size={34} className='text-orange-600' />}
+          gradient='bg-gradient-to-r from-orange-500 to-amber-500'
+        />
+        <ToolCard
+          title='EMI Calculator'
+          description='Calculate your monthly loan payments.'
+          to='/emi'
+          icon={<CreditCard size={34} className='text-fuchsia-600' />}
+          gradient='bg-gradient-to-r from-fuchsia-500 to-pink-600'
         />
       </div>
     </>

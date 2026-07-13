@@ -10,7 +10,6 @@ import ExpenseTable from '../features/expense-split/components/expense-table';
 import type { ExpenseForm as ExpenseFormType } from '../features/expense-split/schema';
 import { useLocalStorage } from '../hooks/use-local-storage';
 import Button from '../components/ui/button';
-// import Layout from '../components/layout';
 
 export default function ExpenseSplitPage() {
   const [friends, setFriends] = useLocalStorage<Friend[]>(

@@ -5,6 +5,8 @@ import MainLayout from '../layout/main-layout';
 import HomePage from '../pages/home-page';
 import NotFoundPage from '../pages/not-found-page';
 import LoanPage from '../pages/loan-page';
+import ExchangeRatePage from "../pages/exchange-rate-page";
+import EMIPage from '../pages/emi-page';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +28,14 @@ export const router = createBrowserRouter([
       {
         path: 'loan',
         element: <LoanPage />,
+      },
+      {
+        path: "exchange-rate",
+        element: <ExchangeRatePage />,
+      },
+      {
+        path: "emi",
+        element: <EMIPage />,
       },
     ],
   },
