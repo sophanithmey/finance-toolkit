@@ -1,6 +1,7 @@
 import {
   ArrowLeftRight,
   Calculator,
+  Coins,
   CreditCard,
   Landmark,
   ReceiptText,
@@ -54,6 +55,13 @@ export default function HomePage() {
           to='/emi'
           icon={<CreditCard size={34} className='text-fuchsia-600' />}
           gradient='bg-gradient-to-r from-fuchsia-500 to-pink-600'
+        />
+        <ToolCard
+          title='Gold Price'
+          description='Live gold prices, calculator, and quick value conversion.'
+          to='/gold'
+          icon={<Coins size={34} className='text-yellow-700' />}
+          gradient='bg-gradient-to-r from-yellow-500 to-amber-400'
         />
       </div>
     </>

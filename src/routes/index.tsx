@@ -1,47 +1,55 @@
 import { createBrowserRouter } from 'react-router-dom';
+
+import AppLayout from '../layout/app-layout';
+
+import HomePage from '../pages/dashboard-page';
 import DiscountPage from '../pages/discount-page';
 import ExpenseSplitPage from '../pages/expense-split-page';
-import MainLayout from '../layout/main-layout';
-import HomePage from '../pages/home-page';
-import NotFoundPage from '../pages/not-found-page';
 import LoanPage from '../pages/loan-page';
-import ExchangeRatePage from "../pages/exchange-rate-page";
+import ExchangeRatePage from '../pages/exchange-rate-page';
 import EMIPage from '../pages/emi-page';
+import GoldPricePage from '../pages/gold-price-page';
+import ErrorPage from '../pages/error-page';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: <AppLayout />,
+    errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
         element: <HomePage />,
       },
       {
-        path: 'discount',
-        element: <DiscountPage />,
+        path: '/gold',
+        element: <GoldPricePage />,
       },
       {
-        path: 'expense-split',
-        element: <ExpenseSplitPage />,
-      },
-      {
-        path: 'loan',
-        element: <LoanPage />,
-      },
-      {
-        path: "exchange-rate",
+        path: '/exchange',
         element: <ExchangeRatePage />,
       },
       {
-        path: "emi",
+        path: '/loan',
+        element: <LoanPage />,
+      },
+      {
+        path: '/emi',
         element: <EMIPage />,
       },
+      {
+        path: '/expense-split',
+        element: <ExpenseSplitPage />,
+      },
+      {
+        path: '/discount',
+        element: <DiscountPage />,
+      },
+      {
+        path: '*',
+        element: <ErrorPage />,
+      },
     ],
-  },
-
-  {
-    path: '*',
-    element: <NotFoundPage />,
   },
 ]);
