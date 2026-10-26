@@ -1,15 +1,11 @@
-import {
-  ArrowUpRight,
-  Coins,
-} from "lucide-react";
+import { ArrowUpRight, Coins, Sparkles } from 'lucide-react';
 
-import Card from "../../../components/ui/card";
-
+import Card from '../../../components/ui/card';
 import {
   convertCurrency,
   formatCurrency,
   formatNumber,
-} from "../../../utils/helper";
+} from '../../../utils/helper';
 
 interface Props {
   name: string;
@@ -26,79 +22,79 @@ export default function GoldPriceCard({
   updatedAt,
   usdRate,
 }: Props) {
-  const buyUsd = convertCurrency(
-    buy,
-    usdRate
-  );
-
-  const sellUsd = convertCurrency(
-    sell,
-    usdRate
-  );
+  const buyUsd = convertCurrency(buy, usdRate);
+  const sellUsd = convertCurrency(sell, usdRate);
 
   return (
-    <Card className="bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-500 text-white">
-      <div className="flex justify-between">
-        <div>
-          <p className="opacity-80">
-            Today's Gold Price
-          </p>
+    <Card className='relative overflow-hidden bg-linear-to-br from-amber-600 via-amber-500 to-yellow-600 text-white shadow-xl border-amber-400/30'>
+      {/* Ambient gold glow */}
+      <div className='pointer-events-none absolute -right-12 -top-12 h-56 w-56 rounded-full bg-white/20 blur-2xl' />
+      <div className='pointer-events-none absolute -bottom-10 -left-10 h-44 w-44 rounded-full bg-yellow-300/20 blur-xl' />
 
-          <h1 className="mt-2 text-3xl font-bold">
-            {name}
-          </h1>
-
-          <div className="mt-8 grid grid-cols-2 gap-8">
-            <div>
-              <p className="opacity-70">
-                BUY
-              </p>
-
-              <h2 className="text-3xl font-bold">
-                {formatCurrency(buyUsd)}
-              </h2>
-
-              <p className="text-sm opacity-80">
-                ≈ {formatNumber(buy)} ₫
-              </p>
+      <div className='relative z-10 flex flex-col justify-between gap-6'>
+        <div className='flex items-start justify-between'>
+          <div>
+            <div className='inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold text-amber-100 backdrop-blur-md'>
+              <Sparkles size={12} className='text-yellow-200' />
+              <span>Live Gold Benchmark</span>
             </div>
 
-            <div>
-              <p className="opacity-70">
-                SELL
-              </p>
-
-              <h2 className="text-3xl font-bold">
-                {formatCurrency(sellUsd)}
-              </h2>
-
-              <p className="text-sm opacity-80">
-                ≈ {formatNumber(sell)} ₫
-              </p>
-            </div>
+            <h1 className='mt-2.5 text-2xl sm:text-3xl font-black tracking-tight text-white'>
+              {name}
+            </h1>
           </div>
 
-          <div className="mt-8 flex gap-6 text-sm">
-            <span>
-              USD/VND
-              <strong className="ml-2">
-                {formatNumber(usdRate)}
-              </strong>
-            </span>
-
-            <span>
-              Updated
-              <strong className="ml-2">
-                {updatedAt}
-              </strong>
-            </span>
+          <div className='flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-white backdrop-blur-md shadow-xs'>
+            <Coins size={26} />
           </div>
         </div>
 
-        <div className="flex flex-col justify-between">
-          <Coins size={48} />
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 rounded-2xl bg-black/15 p-5 backdrop-blur-md border border-white/10'>
+          <div className='space-y-1 border-b sm:border-b-0 sm:border-r border-white/15 pb-4 sm:pb-0 sm:pr-4'>
+            <div className='flex items-center justify-between'>
+              <span className='text-xs font-bold tracking-wider uppercase text-amber-200'>
+                Buy Rate (Bid)
+              </span>
+              <span className='rounded-full bg-emerald-500/30 px-2 py-0.5 text-[10px] font-bold text-emerald-200 border border-emerald-400/30'>
+                We Buy
+              </span>
+            </div>
+            <h2 className='tabular-nums text-2xl sm:text-3xl font-black text-white'>
+              {formatCurrency(buyUsd)}
+            </h2>
+            <p className='text-xs font-medium text-amber-100/90'>
+              ≈ {formatNumber(buy)} ₫ / Tael
+            </p>
+          </div>
 
-          <ArrowUpRight size={36} />
+          <div className='space-y-1 sm:pl-4'>
+            <div className='flex items-center justify-between'>
+              <span className='text-xs font-bold tracking-wider uppercase text-amber-200'>
+                Sell Rate (Ask)
+              </span>
+              <span className='rounded-full bg-amber-400/30 px-2 py-0.5 text-[10px] font-bold text-yellow-100 border border-amber-300/30'>
+                We Sell
+              </span>
+            </div>
+            <h2 className='tabular-nums text-2xl sm:text-3xl font-black text-white'>
+              {formatCurrency(sellUsd)}
+            </h2>
+            <p className='text-xs font-medium text-amber-100/90'>
+              ≈ {formatNumber(sell)} ₫ / Tael
+            </p>
+          </div>
+        </div>
+
+        <div className='flex flex-wrap items-center justify-between gap-3 text-xs text-amber-100/90 border-t border-white/15 pt-3'>
+          <span>
+            Ref Rate: <strong className='text-white'>{formatNumber(usdRate)} ₫/USD</strong>
+          </span>
+
+          <span className='inline-flex items-center gap-1.5'>
+            <span>Updated:</span>
+            <strong className='text-white'>{updatedAt}</strong>
+            <ArrowUpRight size={14} className='text-yellow-200' />
+          </span>
         </div>
       </div>
     </Card>

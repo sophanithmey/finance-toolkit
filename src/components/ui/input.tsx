@@ -1,42 +1,59 @@
-import { forwardRef, type InputHTMLAttributes } from "react";
+import { forwardRef, type InputHTMLAttributes } from 'react';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   error?: string;
+  hint?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, error, className = "", ...props }, ref) => {
-    return (
-      <div className="space-y-1">
-        <label className="block text-sm font-medium text-gray-700">
-          {label}
-        </label>
+  ({ label, error, hint, className = '', id, ...props }, ref) => {
+    const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, '-') : undefined);
 
-        <input
-          ref={ref}
-          className={`
-            w-full rounded-lg border px-3 py-2
-            focus:border-blue-500
-            focus:ring-2
-            focus:ring-blue-200
-            outline-none
-            ${error ? "border-red-500" : "border-gray-300"}
-            ${className}
-          `}
-          {...props}
-        />
+    return (
+      <div className='w-full space-y-1.5'>
+        {label && (
+          <div className='flex items-center justify-between'>
+            <label
+              htmlFor={inputId}
+              className='block text-xs font-semibold uppercase tracking-wider text-slate-600'
+            >
+              {label}
+            </label>
+            {hint && <span className='text-xs text-slate-400'>{hint}</span>}
+          </div>
+        )}
+
+        <div className='relative'>
+          <input
+            id={inputId}
+            ref={ref}
+            className={`
+              w-full rounded-2xl border px-4 py-3 text-sm
+              bg-slate-50/70 text-slate-800 placeholder:text-slate-400
+              transition-all duration-200
+              focus:bg-white focus:outline-none focus:ring-4
+              ${
+                error
+                  ? 'border-rose-400 focus:border-rose-500 focus:ring-rose-500/15'
+                  : 'border-slate-200/90 hover:border-slate-300 focus:border-indigo-500 focus:ring-indigo-500/15'
+              }
+              ${className}
+            `}
+            {...props}
+          />
+        </div>
 
         {error && (
-          <p className="text-sm text-red-500">
+          <p className='text-xs font-medium text-rose-500 animate-in fade-in'>
             {error}
           </p>
         )}
       </div>
     );
-  }
+  },
 );
 
-Input.displayName = "Input";
+Input.displayName = 'Input';
 
 export default Input;

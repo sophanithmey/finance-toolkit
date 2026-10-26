@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { ReactNode } from 'react';
 
@@ -21,34 +21,41 @@ export default function ToolCard({
     <Link
       to={to}
       className={`
-        group
-        relative
-        overflow-hidden
-        rounded-3xl
-        p-px
-        transition
-        duration-300
-        hover:-translate-y-2
-        hover:shadow-2xl
-        ${gradient}
+        group relative flex flex-col justify-between overflow-hidden rounded-3xl
+        border border-slate-200/80 bg-white/95 p-7 shadow-xs backdrop-blur-md
+        transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:border-slate-300
       `}
     >
-      <div className='flex h-full flex-col rounded-3xl bg-white p-7'>
-        <div className='mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-slate-100'>
-          {icon}
+      {/* Top Gradient Highlight Accent */}
+      <div
+        className={`absolute inset-x-0 top-0 h-1.5 transition-all duration-300 group-hover:h-2 ${gradient}`}
+      />
+
+      <div>
+        <div className='flex items-center justify-between'>
+          <div className='flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-50 border border-slate-100 shadow-inner transition-transform duration-300 group-hover:scale-110'>
+            {icon}
+          </div>
+
+          <div className='flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-slate-400 transition-all duration-300 group-hover:bg-indigo-600 group-hover:text-white group-hover:rotate-45'>
+            <ArrowUpRight size={18} />
+          </div>
         </div>
 
-        <h2 className='text-2xl font-bold'>{title}</h2>
+        <h2 className='mt-6 text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors'>
+          {title}
+        </h2>
 
-        <p className='mt-3 flex-1 text-gray-500'>{description}</p>
+        <p className='mt-2.5 text-sm leading-relaxed text-slate-500'>
+          {description}
+        </p>
+      </div>
 
-        <div className='mt-8 flex items-center gap-2 font-semibold text-slate-700'>
-          Open
-          <ArrowRight
-            size={18}
-            className='transition-transform group-hover:translate-x-2'
-          />
-        </div>
+      <div className='mt-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-indigo-600'>
+        Launch Tool
+        <span className='transition-transform duration-300 group-hover:translate-x-1'>
+          →
+        </span>
       </div>
     </Link>
   );

@@ -14,22 +14,30 @@ export default function TodayRate({ from, to, rate, timestamp }: Props) {
 
   return (
     <Card>
-      <div className='flex items-center justify-between'>
+      <div className='flex flex-wrap items-center justify-between gap-4'>
         <div>
-          <p className='text-sm text-slate-500'>Today's Exchange Rate</p>
+          <div className='flex items-center gap-2'>
+            <span className='text-xs font-semibold uppercase tracking-wider text-slate-400'>
+              Market Reference Rate
+            </span>
+            <span className='inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700'>
+              <span className='h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse' />
+              Realtime
+            </span>
+          </div>
 
-          <h2 className='mt-2 text-3xl font-bold text-slate-800'>
-            1 {from} = {rate.toLocaleString()} {to}
+          <h2 className='mt-2 tabular-nums text-3xl font-black text-slate-900'>
+            1 {from} = <span className='text-indigo-600'>{rate ? rate.toLocaleString(undefined, { maximumFractionDigits: 6 }) : '—'}</span> {to}
           </h2>
 
-          <p className='mt-2 flex items-center gap-2 text-sm text-slate-500'>
-            <CalendarClock size={16} />
-            Updated: {updated.toLocaleString()}
+          <p className='mt-2 flex items-center gap-2 text-xs font-medium text-slate-400'>
+            <CalendarClock size={14} />
+            Market Quote: {updated.toLocaleString()}
           </p>
         </div>
 
-        <div className='rounded-full bg-emerald-100 p-4'>
-          <TrendingUp size={32} className='text-emerald-600' />
+        <div className='flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-emerald-500/15 to-teal-500/15 text-emerald-600 shadow-inner'>
+          <TrendingUp size={28} />
         </div>
       </div>
     </Card>

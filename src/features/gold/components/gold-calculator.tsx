@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { Calculator } from 'lucide-react';
 
 import Card from '../../../components/ui/card';
+import Input from '../../../components/ui/input';
 import { formatCurrency, formatNumber } from '../../../utils/helper';
 
 interface Props {
@@ -9,70 +11,73 @@ interface Props {
 }
 
 const units = [
-  {
-    label: 'Tael',
-    value: 1,
-  },
-  {
-    label: 'Chi',
-    value: 0.1,
-  },
-  {
-    label: 'Gram',
-    value: 1 / 37.5,
-  },
+  { label: 'Tael (Lượng / Cây)', value: 1 },
+  { label: 'Chi (Chỉ - 0.1 Tael)', value: 0.1 },
+  { label: 'Gram (1/37.5 Tael)', value: 1 / 37.5 },
 ];
 
 export default function GoldCalculator({ sellPrice, usdRate }: Props) {
   const [weight, setWeight] = useState(1);
-
   const [unit, setUnit] = useState(units[0]);
 
   const totalVnd = weight * unit.value * sellPrice;
-
   const totalUsd = totalVnd / usdRate;
 
   return (
     <Card>
-      <h2 className='mb-5 text-xl font-bold'>Gold Calculator</h2>
+      <div className='flex items-center gap-3 mb-6'>
+        <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 text-amber-600'>
+          <Calculator size={22} />
+        </div>
+        <div>
+          <h2 className='text-xl font-extrabold text-slate-900'>Gold Weight Estimator</h2>
+          <p className='text-xs text-slate-400'>
+            Calculate real-time market value for any quantity
+          </p>
+        </div>
+      </div>
 
       <div className='grid gap-4 md:grid-cols-2'>
-        <div>
-          <label>Weight</label>
+        <Input
+          label='Weight / Quantity'
+          type='number'
+          step='0.1'
+          value={weight}
+          onChange={(e) => setWeight(Math.max(Number(e.target.value), 0))}
+        />
 
-          <input
-            type='number'
-            value={weight}
-            onChange={(e) => setWeight(Number(e.target.value))}
-            className='mt-2 w-full rounded-lg border p-3'
-          />
-        </div>
-
-        <div>
-          <label>Unit</label>
-
+        <div className='space-y-1.5'>
+          <label className='block text-xs font-semibold uppercase tracking-wider text-slate-500'>
+            Unit of Measurement
+          </label>
           <select
-            className='mt-2 w-full rounded-lg border p-3'
+            className='w-full rounded-2xl border border-slate-200/90 bg-slate-50/70 px-4 py-3 text-sm font-bold text-slate-800 transition-all duration-200 hover:border-slate-300 focus:bg-white focus:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/15 cursor-pointer shadow-2xs'
             value={unit.label}
             onChange={(e) =>
-              setUnit(units.find((u) => u.label === e.target.value)!)
+              setUnit(units.find((u) => u.label === e.target.value) || units[0])
             }
           >
             {units.map((u) => (
-              <option key={u.label}>{u.label}</option>
+              <option key={u.label} value={u.label}>
+                {u.label}
+              </option>
             ))}
           </select>
         </div>
       </div>
 
-      <div className='mt-6 rounded-xl bg-yellow-50 p-5'>
-        <p className='text-sm text-slate-500'>Estimated Value</p>
+      <div className='mt-6 rounded-2xl border border-amber-200/70 bg-linear-to-br from-amber-50/80 via-yellow-50/50 to-orange-50/80 p-5'>
+        <p className='text-xs font-bold uppercase tracking-wider text-amber-800'>
+          Estimated Holding Value
+        </p>
 
-        <h2 className='mt-2 text-3xl font-bold text-yellow-700'>
+        <h3 className='mt-1.5 tabular-nums text-3xl font-black text-amber-900'>
           {formatCurrency(totalUsd)}
-        </h2>
+        </h3>
 
-        <p className='mt-2 text-slate-500'>≈ {formatNumber(totalVnd)} ₫</p>
+        <p className='mt-1 text-sm font-semibold text-amber-800/80'>
+          ≈ {formatNumber(Math.round(totalVnd))} ₫
+        </p>
       </div>
     </Card>
   );

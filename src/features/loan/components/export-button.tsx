@@ -1,4 +1,4 @@
-import { Download } from 'lucide-react';
+import { FileSpreadsheet } from 'lucide-react';
 
 import Button from '../../../components/ui/button';
 
@@ -17,11 +17,13 @@ export default function ExportButton({ schedule }: Props) {
   return (
     <Button
       type='button'
+      variant='outline'
+      size='sm'
       onClick={() => exportLoanSchedule(schedule)}
-      className='flex items-center gap-2'
+      className='border-emerald-200 text-emerald-700 hover:bg-emerald-50 hover:border-emerald-300'
     >
-      <Download size={18} />
-      Export Excel
+      <FileSpreadsheet size={16} className='text-emerald-600' />
+      <span>Export Excel</span>
     </Button>
   );
 }

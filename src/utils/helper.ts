@@ -179,11 +179,7 @@ export function generateSchedule(
   return schedule;
 }
 
-export function formatCurrency(
-  amount: number,
-  currency: string = "USD",
-  locale = "en-US"
-) {
+export function formatCurrency(amount: number, currency: string = "USD", locale = "en-US") {
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
@@ -195,9 +191,6 @@ export function formatNumber(value: number) {
   return new Intl.NumberFormat().format(value);
 }
 
-export function convertCurrency(
-  amount: number,
-  rate: number
-) {
+export function convertCurrency(amount: number, rate: number) {
   return amount / rate;
 }

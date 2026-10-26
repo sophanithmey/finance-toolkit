@@ -3,9 +3,16 @@ import type { ReactNode } from 'react';
 interface CardProps {
   readonly children: ReactNode;
   readonly className?: string;
+  readonly hover?: boolean;
+  readonly glow?: boolean;
 }
 
-export default function Card({ children, className = '' }: CardProps) {
+export default function Card({
+  children,
+  className = '',
+  hover = true,
+  glow = true,
+}: CardProps) {
   return (
     <div
       className={`
@@ -13,24 +20,29 @@ export default function Card({ children, className = '' }: CardProps) {
         overflow-hidden
         rounded-3xl
         border
-        border-white/60
-        bg-white/90
+        border-slate-200/70
+        bg-white/85
         p-6
-        shadow-lg
-        backdrop-blur-sm
+        shadow-sm
+        backdrop-blur-md
         transition-all
         duration-300
-        hover:-translate-y-1
-        hover:shadow-2xl
-        ${className}  
+        dark:border-slate-800/80
+        dark:bg-slate-900/85
+        dark:text-slate-100
+        ${hover ? 'hover:-translate-y-0.5 hover:shadow-xl hover:border-slate-300/80 dark:hover:border-slate-700 dark:hover:shadow-indigo-500/5' : ''}
+        ${className}
       `}
     >
-      <div className='absolute -right-10 -top-10 h-32 w-32 rounded-full bg-blue-500/5 blur-2xl' />
-      <div className='absolute -bottom-12 -left-10 h-24 w-24 rounded-full bg-cyan-500/5 blur-xl' />
-      {/* Top Gradient Accent */}
-      <div className='absolute inset-x-0 top-0 h-1 bg-linear-to-r from-blue-500 via-cyan-500 to-emerald-500' />
+      {glow && (
+        <>
+          <div className='pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full bg-linear-to-br from-indigo-500/10 to-blue-500/0 blur-2xl dark:from-indigo-500/20' />
+          <div className='pointer-events-none absolute -bottom-12 -left-12 h-32 w-32 rounded-full bg-linear-to-tr from-cyan-500/10 to-emerald-500/0 blur-xl dark:from-cyan-500/20' />
+          <div className='absolute inset-x-0 top-0 h-1 bg-linear-to-r from-blue-500 via-indigo-500 to-emerald-400 opacity-80' />
+        </>
+      )}
 
-      {children}
+      <div className='relative z-10'>{children}</div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import LoanPage from '../pages/loan-page';
 import ExchangeRatePage from '../pages/exchange-rate-page';
 import EMIPage from '../pages/emi-page';
 import GoldPricePage from '../pages/gold-price-page';
+import InvestmentPage from '../pages/investment-page';
 import ErrorPage from '../pages/error-page';
 
 export const router = createBrowserRouter([
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+      {
+        path: '/investment',
+        element: <InvestmentPage />,
       },
       {
         path: '/gold',
