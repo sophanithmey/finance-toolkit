@@ -1,3 +1,10 @@
+import util from 'node:util'
+
+// Polyfill util.styleText for Node versions < 20.12 when running ESLint 10 stylish formatter
+if (typeof util.styleText !== 'function') {
+  util.styleText = (_format, text) => text
+}
+
 import js from '@eslint/js'
 import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'

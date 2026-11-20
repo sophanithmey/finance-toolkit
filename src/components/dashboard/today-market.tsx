@@ -1,5 +1,4 @@
 import { Coins, DollarSign, RefreshCw } from 'lucide-react';
-
 import MarketCard from './market-card';
 
 interface Props {
@@ -16,58 +15,51 @@ export default function TodayMarket({
   updatedTime,
 }: Props) {
   return (
-    <div className='flex flex-col justify-between bg-slate-50/70 p-6'>
+    <div className='flex flex-col justify-between bg-slate-50/60 p-5 dark:bg-slate-900/40'>
       <div>
-        <div className='mb-5 flex items-center justify-between'>
+        <div className='mb-4 flex items-center justify-between'>
           <div>
-            <h2 className='text-base font-extrabold text-slate-900'>
-              Live Financial Market
-            </h2>
-            <p className='text-xs text-slate-400'>Real-time rate snapshot</p>
+            <h3 className='text-sm font-bold text-slate-900 dark:text-slate-100'>
+              Live Market Snapshot
+            </h3>
+            <p className='text-xs text-slate-400 dark:text-slate-500'>Real-time rate benchmarks</p>
           </div>
 
-          <div className='inline-flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-emerald-50 px-2.5 py-1 text-xs font-bold text-emerald-700'>
-            <span className='relative flex h-2 w-2'>
-              <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75' />
-              <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-500' />
-            </span>
-            <span>Live Feed</span>
+          <div className='inline-flex items-center gap-1.5 rounded-full border border-emerald-200/70 bg-emerald-50 px-2.5 py-0.5 text-xs font-semibold text-emerald-700 dark:border-emerald-800/50 dark:bg-emerald-950/50 dark:text-emerald-300'>
+            <span className='h-1.5 w-1.5 rounded-full bg-emerald-500' />
+            <span>Connected</span>
           </div>
         </div>
 
-        <div className='space-y-3.5'>
+        <div className='space-y-3'>
           <MarketCard
-            title='Gold Price (Sell)'
+            title='Gold SJC (Sell)'
             value={goldPrice}
             subtitle='SJC 9999 • per Tael'
             change={Number(goldChange)}
             icon={Coins}
-            color='bg-amber-100 text-amber-700'
+            color='bg-amber-100 text-amber-700 dark:bg-amber-950/60 dark:text-amber-400'
           />
 
           <MarketCard
             isExchange={true}
             title='USD → KHR Exchange'
             value={exchangeRate.toLocaleString()}
-            subtitle='1 USD in Riel'
+            subtitle='1 USD to Cambodian Riel'
             icon={DollarSign}
-            color='bg-emerald-100 text-emerald-700'
+            color='bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
           />
         </div>
       </div>
 
-      <div className='mt-6 rounded-2xl border border-indigo-100 bg-linear-to-r from-indigo-900 to-blue-900 p-4 text-white shadow-md'>
-        <div className='flex items-center justify-between text-xs font-semibold text-indigo-200'>
-          <span className='inline-flex items-center gap-1.5'>
-            <RefreshCw size={12} className='animate-spin' style={{ animationDuration: '6s' }} />
-            Last Synced
-          </span>
-          <span className='text-[11px] text-indigo-300'>Auto-Refreshed</span>
+      <div className='mt-5 flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3 text-xs dark:border-slate-800 dark:bg-slate-900'>
+        <div className='flex items-center gap-2 text-slate-500 dark:text-slate-400'>
+          <RefreshCw size={12} className='text-indigo-600 dark:text-indigo-400' />
+          <span>Last updated</span>
         </div>
-
-        <div className='mt-1.5 tabular-nums text-base font-black text-white'>
+        <span className='font-mono font-semibold text-slate-900 dark:text-slate-100'>
           {updatedTime || 'Recently'}
-        </div>
+        </span>
       </div>
     </div>
   );

@@ -14,34 +14,31 @@ export default function EMISummary({ result }: Props) {
       <StatCard
         title='Financed Principal'
         value={formatCurrency(result.loanAmount)}
-        icon={<Wallet size={24} />}
-        color='from-blue-500/15 to-indigo-500/15 text-blue-600'
+        icon={<Wallet size={20} />}
         subtitle='Loan after down payment'
       />
 
       <StatCard
         title='Monthly Installment'
         value={formatCurrency(result.monthlyPayment)}
-        icon={<CreditCard size={24} />}
-        color='from-emerald-500/15 to-teal-500/15 text-emerald-600'
-        subtitle='Due each month'
+        icon={<CreditCard size={20} />}
+        subtitle='Equated monthly deduction'
         trend='Fixed EMI'
       />
 
       <StatCard
         title='Total Interest'
         value={formatCurrency(result.totalInterest)}
-        icon={<Percent size={24} />}
-        color='from-amber-500/15 to-orange-500/15 text-amber-600'
-        subtitle='Cost of borrowing'
+        icon={<Percent size={20} />}
+        color='bg-amber-50 text-amber-600 dark:bg-amber-950/60 dark:text-amber-400'
+        subtitle='Total financing cost'
       />
 
       <StatCard
-        title='Total Outlay'
+        title='Total Repayment'
         value={formatCurrency(result.totalPayment)}
-        icon={<DollarSign size={24} />}
-        color='from-purple-500/15 to-fuchsia-500/15 text-purple-600'
-        subtitle='Principal + interest'
+        icon={<DollarSign size={20} />}
+        subtitle='Principal + interest outlay'
       />
     </div>
   );

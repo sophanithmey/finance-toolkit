@@ -43,14 +43,14 @@ export default function ExpenseForm({ friends, onAddExpense }: Props) {
     <form onSubmit={handleSubmit(onSubmit)} className='space-y-4'>
       <div className='grid gap-4 sm:grid-cols-2'>
         <Input
-          label='Expense Title'
-          placeholder='e.g. Dinner, Airbnb, Taxi...'
+          label='Expense Description'
+          placeholder='e.g. Group Dinner, Airbnb, Taxi...'
           {...register('title')}
           error={errors.title?.message}
         />
 
         <Input
-          label='Amount ($)'
+          label='Total Amount ($)'
           type='number'
           step='0.01'
           placeholder='0.00'
@@ -59,15 +59,15 @@ export default function ExpenseForm({ friends, onAddExpense }: Props) {
         />
 
         <div className='space-y-1.5'>
-          <label className='block text-xs font-semibold uppercase tracking-wider text-slate-500'>
-            Who Paid?
+          <label className='block text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400'>
+            Who Paid the Bill?
           </label>
           <select
             {...register('paidBy')}
-            className={`w-full rounded-2xl border px-4 py-3 text-sm font-semibold text-slate-800 transition-all duration-200 hover:border-slate-300 focus:bg-white focus:outline-none focus:ring-4 cursor-pointer shadow-2xs ${
+            className={`w-full rounded-xl border px-3.5 py-2.5 text-sm font-semibold transition-all cursor-pointer dark:bg-slate-950 dark:text-slate-100 ${
               errors.paidBy
-                ? 'border-rose-400 bg-rose-50/50 focus:border-rose-500 focus:ring-rose-500/15'
-                : 'border-slate-200/90 bg-slate-50/70 focus:border-indigo-500 focus:ring-indigo-500/15'
+                ? 'border-rose-400 bg-rose-50/50 dark:border-rose-500'
+                : 'border-slate-200 bg-white hover:border-slate-300 dark:border-slate-800'
             }`}
           >
             <option value=''>Select payer...</option>
@@ -83,7 +83,7 @@ export default function ExpenseForm({ friends, onAddExpense }: Props) {
         </div>
 
         <Input
-          label='Payment Date'
+          label='Receipt Date'
           type='date'
           {...register('date')}
           error={errors.date?.message}
@@ -95,7 +95,7 @@ export default function ExpenseForm({ friends, onAddExpense }: Props) {
         className='w-full sm:w-auto'
         disabled={friends.length === 0}
       >
-        <PlusCircle size={17} />
+        <PlusCircle size={15} />
         <span>Log Expense</span>
       </Button>
     </form>

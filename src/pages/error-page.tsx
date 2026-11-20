@@ -25,49 +25,48 @@ export default function ErrorPage() {
   }
 
   return (
-    <div className='relative flex min-h-screen items-center justify-center bg-slate-50 p-6'>
-      <div className='pointer-events-none absolute -left-20 -top-20 h-96 w-96 rounded-full bg-rose-400/10 blur-3xl' />
-      <div className='pointer-events-none absolute -right-20 -bottom-20 h-96 w-96 rounded-full bg-indigo-400/10 blur-3xl' />
-
-      <div className='relative z-10 w-full max-w-lg rounded-3xl border border-slate-200/80 bg-white/90 p-8 sm:p-10 text-center shadow-2xl backdrop-blur-xl'>
-        <div className='mx-auto flex h-20 w-20 items-center justify-center rounded-3xl bg-linear-to-tr from-rose-500/15 to-orange-500/15 text-rose-600 shadow-inner'>
-          <AlertTriangle size={36} />
+    <div className='relative flex min-h-screen items-center justify-center bg-slate-50 p-6 dark:bg-slate-950'>
+      <div className='relative z-10 w-full max-w-md rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-lg dark:border-slate-800 dark:bg-slate-900'>
+        <div className='mx-auto flex h-14 w-14 items-center justify-center rounded-xl bg-rose-50 text-rose-600 dark:bg-rose-950/60 dark:text-rose-400'>
+          <AlertTriangle size={26} />
         </div>
 
-        <h1 className='mt-6 text-2xl sm:text-3xl font-black text-slate-900 tracking-tight'>
+        <h1 className='mt-4 text-xl font-black text-slate-900 tracking-tight dark:text-slate-100'>
           {title}
         </h1>
 
-        <p className='mt-2.5 text-sm text-slate-500 leading-relaxed max-w-sm mx-auto'>
+        <p className='mt-2 text-xs text-slate-500 leading-relaxed max-w-sm mx-auto dark:text-slate-400'>
           {message}
         </p>
 
-        <div className='mt-8 flex flex-wrap justify-center gap-3'>
+        <div className='mt-6 flex flex-wrap justify-center gap-2'>
           <Button
             type='button'
             variant='outline'
+            size='sm'
             onClick={() => navigate(-1)}
           >
-            <ArrowLeft size={16} />
+            <ArrowLeft size={14} />
             Go Back
           </Button>
 
           <Button
             type='button'
+            size='sm'
             onClick={() => window.location.reload()}
           >
-            <RefreshCw size={16} />
+            <RefreshCw size={14} />
             Reload Page
           </Button>
         </div>
 
-        <div className='mt-6 border-t border-slate-100 pt-5'>
+        <div className='mt-6 border-t border-slate-100 pt-4 dark:border-slate-800'>
           <Link
             to='/'
-            className='inline-flex items-center gap-1.5 text-xs font-bold text-indigo-600 hover:text-indigo-700 transition'
+            className='inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-700 transition dark:text-indigo-400'
           >
-            <Home size={14} />
-            Back to Financial Dashboard
+            <Home size={13} />
+            Return to Dashboard
           </Link>
         </div>
       </div>

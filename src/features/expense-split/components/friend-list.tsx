@@ -7,26 +7,26 @@ interface FriendListProps {
 }
 
 const avatarColors = [
-  'bg-blue-500 text-white',
-  'bg-indigo-500 text-white',
-  'bg-emerald-500 text-white',
-  'bg-amber-500 text-white',
-  'bg-rose-500 text-white',
-  'bg-violet-500 text-white',
-  'bg-cyan-500 text-white',
+  'bg-blue-600 text-white',
+  'bg-indigo-600 text-white',
+  'bg-emerald-600 text-white',
+  'bg-amber-600 text-white',
+  'bg-rose-600 text-white',
+  'bg-violet-600 text-white',
+  'bg-cyan-600 text-white',
 ];
 
 export default function FriendList({ friends, onRemove }: FriendListProps) {
   if (friends.length === 0) {
     return (
-      <div className='py-6 text-center text-xs font-medium text-slate-400'>
-        No friends added yet. Add at least two people to start splitting expenses.
+      <div className='py-4 text-center text-xs text-slate-400 dark:text-slate-500'>
+        No members added yet. Add at least two people to begin splitting group expenses.
       </div>
     );
   }
 
   return (
-    <div className='flex flex-wrap gap-2.5'>
+    <div className='flex flex-wrap gap-2'>
       {friends.map((friend, idx) => {
         const colorClass = avatarColors[idx % avatarColors.length];
         const initial = friend.name.charAt(0).toUpperCase();
@@ -34,12 +34,12 @@ export default function FriendList({ friends, onRemove }: FriendListProps) {
         return (
           <div
             key={friend.id}
-            className='group inline-flex items-center gap-2.5 rounded-2xl border border-slate-200/90 bg-white py-1.5 pl-2 pr-3 text-xs font-bold text-slate-800 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-xs'
+            className='group inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white py-1 pl-1.5 pr-2.5 text-xs font-semibold text-slate-800 shadow-2xs dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200'
           >
             <div
-              className={`flex h-6 w-6 items-center justify-center rounded-xl text-[11px] font-black ${colorClass}`}
+              className={`flex h-5 w-5 items-center justify-center rounded-lg text-[10px] font-bold ${colorClass}`}
             >
-              {initial || <User size={12} />}
+              {initial || <User size={10} />}
             </div>
 
             <span>{friend.name}</span>
@@ -47,10 +47,10 @@ export default function FriendList({ friends, onRemove }: FriendListProps) {
             <button
               type='button'
               onClick={() => onRemove(friend.id)}
-              className='ml-1 flex h-4 w-4 items-center justify-center rounded-full text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors'
+              className='ml-0.5 flex h-4 w-4 items-center justify-center rounded-md text-slate-400 hover:bg-rose-50 hover:text-rose-600 transition-colors dark:hover:bg-rose-950/40 dark:hover:text-rose-400'
               aria-label={`Remove ${friend.name}`}
             >
-              <X size={12} />
+              <X size={11} />
             </button>
           </div>
         );

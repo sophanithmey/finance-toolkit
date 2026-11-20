@@ -23,43 +23,49 @@ export default function EMIResult({ result }: Props) {
 
   return (
     <Card>
-      <div className='flex items-center justify-between border-b border-slate-100 pb-4 mb-6'>
+      <div className='flex items-center justify-between border-b border-slate-100 pb-3 mb-4 dark:border-slate-800'>
         <div>
-          <h2 className='text-lg font-bold text-slate-900'>Payment Breakdown & Ratios</h2>
-          <p className='text-xs text-slate-400'>Principal balance vs borrowing interest proportion</p>
+          <h2 className='text-sm font-bold text-slate-900 dark:text-slate-100'>
+            Payment Breakdown & Ratio
+          </h2>
+          <p className='text-xs text-slate-400 dark:text-slate-500'>
+            Principal capital vs accrued borrowing interest proportion
+          </p>
         </div>
       </div>
 
       {/* Visual Ratio Bar */}
-      <div className='mb-6 space-y-2 rounded-2xl border border-slate-100 bg-slate-50/60 p-4'>
-        <div className='flex justify-between text-xs font-bold'>
-          <span className='text-indigo-600'>Principal ({principalPercent.toFixed(1)}%)</span>
-          <span className='text-amber-600'>Interest ({interestPercent.toFixed(1)}%)</span>
+      <div className='mb-5 space-y-2 rounded-xl border border-slate-200 bg-slate-50/60 p-3.5 dark:border-slate-800 dark:bg-slate-900/60'>
+        <div className='flex justify-between text-xs font-semibold'>
+          <span className='text-slate-700 dark:text-slate-300'>Principal ({principalPercent.toFixed(1)}%)</span>
+          <span className='text-amber-600 dark:text-amber-400'>Interest ({interestPercent.toFixed(1)}%)</span>
         </div>
-        <div className='h-3 w-full overflow-hidden rounded-full bg-slate-200 flex'>
+        <div className='h-2.5 w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800 flex'>
           <div
             style={{ width: `${principalPercent}%` }}
-            className='bg-linear-to-r from-blue-500 to-indigo-600 transition-all duration-500'
+            className='bg-slate-900 dark:bg-white transition-all duration-300'
           />
           <div
             style={{ width: `${interestPercent}%` }}
-            className='bg-linear-to-r from-amber-400 to-orange-500 transition-all duration-500'
+            className='bg-amber-500 transition-all duration-300'
           />
         </div>
       </div>
 
-      <div className='divide-y divide-slate-100 rounded-2xl border border-slate-200/80 overflow-hidden bg-white'>
+      <div className='divide-y divide-slate-100 rounded-xl border border-slate-200/80 overflow-hidden bg-white dark:divide-slate-800 dark:border-slate-800 dark:bg-slate-900'>
         {rows.map(({ label, value, highlight }) => (
           <div
             key={label}
-            className={`flex items-center justify-between px-5 py-3.5 text-sm transition-colors ${
-              highlight ? 'bg-indigo-50/50 font-bold text-indigo-950' : 'text-slate-700 hover:bg-slate-50/50'
+            className={`flex items-center justify-between px-4 py-3 text-xs transition-colors ${
+              highlight
+                ? 'bg-slate-50 dark:bg-slate-800/60 font-bold'
+                : 'text-slate-700 hover:bg-slate-50/50 dark:text-slate-300 dark:hover:bg-slate-800/40'
             }`}
           >
-            <span className={highlight ? 'font-bold text-slate-900' : 'font-medium text-slate-600'}>
+            <span className={highlight ? 'font-bold text-slate-900 dark:text-slate-100' : 'font-medium text-slate-600 dark:text-slate-400'}>
               {label}
             </span>
-            <span className='tabular-nums font-bold text-slate-900'>
+            <span className='tabular-nums font-bold text-slate-900 dark:text-slate-100'>
               {formatCurrency(Number(value))}
             </span>
           </div>

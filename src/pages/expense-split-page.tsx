@@ -34,7 +34,7 @@ export default function ExpenseSplitPage() {
   };
 
   const handleReset = () => {
-    if (window.confirm('Are you sure you want to reset all friends and expenses?')) {
+    if (window.confirm('Reset all members and expense records?')) {
       setFriends([]);
       setExpenses([]);
     }
@@ -44,14 +44,16 @@ export default function ExpenseSplitPage() {
     <div className='space-y-6'>
       {/* Group Members Section */}
       <Card>
-        <div className='flex items-center justify-between mb-6'>
+        <div className='flex items-center justify-between mb-4'>
           <div className='flex items-center gap-3'>
-            <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-600'>
-              <Users size={22} />
+            <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'>
+              <Users size={18} />
             </div>
             <div>
-              <h2 className='text-xl font-extrabold text-slate-900'>Group Members</h2>
-              <p className='text-xs text-slate-400'>Add the people sharing expenses</p>
+              <h2 className='text-base font-bold text-slate-900 dark:text-slate-100'>
+                Group Members
+              </h2>
+              <p className='text-xs text-slate-400 dark:text-slate-500'>Add friends sharing group expenses</p>
             </div>
           </div>
 
@@ -61,10 +63,10 @@ export default function ExpenseSplitPage() {
               variant='outline'
               size='sm'
               onClick={handleReset}
-              className='text-rose-600 hover:text-rose-700 hover:bg-rose-50 border-rose-200'
+              className='text-rose-600 hover:text-rose-700 hover:bg-rose-50 border-rose-200 dark:border-rose-900/50 dark:hover:bg-rose-950/40'
             >
-              <RotateCcw size={14} />
-              Reset All
+              <RotateCcw size={13} />
+              Reset
             </Button>
           )}
         </div>
@@ -74,26 +76,28 @@ export default function ExpenseSplitPage() {
           onAddFriend={addFriend}
         />
 
-        <div className='mt-5'>
+        <div className='mt-4'>
           <FriendList friends={friends} onRemove={removeFriend} />
         </div>
       </Card>
 
       {/* Expense Logging Section */}
       <Card>
-        <div className='flex items-center gap-3 mb-6'>
-          <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600'>
-            <ReceiptText size={22} />
+        <div className='flex items-center gap-3 mb-4'>
+          <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'>
+            <ReceiptText size={18} />
           </div>
           <div>
-            <h2 className='text-xl font-extrabold text-slate-900'>Log Expenses</h2>
-            <p className='text-xs text-slate-400'>Record bills paid by individuals</p>
+            <h2 className='text-base font-bold text-slate-900 dark:text-slate-100'>
+              Log Group Expense
+            </h2>
+            <p className='text-xs text-slate-400 dark:text-slate-500'>Record itemized bills paid by group members</p>
           </div>
         </div>
 
         <ExpenseForm friends={friends} onAddExpense={addExpense} />
 
-        <div className='mt-6 border-t border-slate-100 pt-6'>
+        <div className='mt-5 border-t border-slate-100 pt-5 dark:border-slate-800'>
           <ExpenseTable
             expenses={expenses}
             friends={friends}

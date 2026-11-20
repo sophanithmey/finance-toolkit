@@ -17,27 +17,27 @@ export default function TodayRate({ from, to, rate, timestamp }: Props) {
       <div className='flex flex-wrap items-center justify-between gap-4'>
         <div>
           <div className='flex items-center gap-2'>
-            <span className='text-xs font-semibold uppercase tracking-wider text-slate-400'>
-              Market Reference Rate
+            <span className='text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400'>
+              Market Quote
             </span>
-            <span className='inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-bold text-emerald-700'>
-              <span className='h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse' />
+            <span className='inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300'>
+              <span className='h-1.5 w-1.5 rounded-full bg-emerald-500' />
               Realtime
             </span>
           </div>
 
-          <h2 className='mt-2 tabular-nums text-3xl font-black text-slate-900'>
-            1 {from} = <span className='text-indigo-600'>{rate ? rate.toLocaleString(undefined, { maximumFractionDigits: 6 }) : '—'}</span> {to}
-          </h2>
+          <div className='mt-2 tabular-nums text-2xl font-black text-slate-900 dark:text-slate-100'>
+            1 {from} = <span className='text-indigo-600 dark:text-indigo-400'>{rate ? rate.toLocaleString(undefined, { maximumFractionDigits: 6 }) : '—'}</span> {to}
+          </div>
 
-          <p className='mt-2 flex items-center gap-2 text-xs font-medium text-slate-400'>
-            <CalendarClock size={14} />
-            Market Quote: {updated.toLocaleString()}
+          <p className='mt-1.5 flex items-center gap-1.5 text-xs font-medium text-slate-400 dark:text-slate-500'>
+            <CalendarClock size={13} />
+            Timestamp: {updated.toLocaleString()}
           </p>
         </div>
 
-        <div className='flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-emerald-500/15 to-teal-500/15 text-emerald-600 shadow-inner'>
-          <TrendingUp size={28} />
+        <div className='flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'>
+          <TrendingUp size={20} />
         </div>
       </div>
     </Card>

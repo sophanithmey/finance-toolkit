@@ -32,7 +32,7 @@ export default function FriendForm({ friends, onAddFriend }: FriendFormProps) {
     if (exists) {
       setError('name', {
         type: 'manual',
-        message: 'This person is already in your group',
+        message: 'This member already exists in your group',
       });
       return;
     }
@@ -42,18 +42,18 @@ export default function FriendForm({ friends, onAddFriend }: FriendFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className='flex items-start gap-3'>
+    <form onSubmit={handleSubmit(onSubmit)} className='flex items-start gap-2.5'>
       <div className='flex-1'>
         <Input
-          placeholder='e.g. Alex, Maya, John...'
+          placeholder='e.g. Alex, Sam, Taylor...'
           {...register('name')}
           error={errors.name?.message}
         />
       </div>
 
-      <Button type='submit' className='h-[46px] shrink-0'>
-        <UserPlus size={16} />
-        <span>Add</span>
+      <Button type='submit' size='md' className='h-[42px] shrink-0'>
+        <UserPlus size={15} />
+        <span>Add Member</span>
       </Button>
     </form>
   );

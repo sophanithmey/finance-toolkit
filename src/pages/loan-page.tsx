@@ -41,11 +41,13 @@ export default function LoanPage() {
       <LoanSummary loanAmount={loanAmount} schedule={schedule} />
 
       <Card>
-        <div className='mb-5 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4'>
+        <div className='mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3 dark:border-slate-800'>
           <div>
-            <h2 className='text-lg font-bold text-slate-900'>Amortization Schedule</h2>
-            <p className='text-xs text-slate-400'>
-              Month-by-month repayment breakdown with balance tracking
+            <h2 className='text-sm font-bold text-slate-900 dark:text-slate-100'>
+              Amortization Breakdown
+            </h2>
+            <p className='text-xs text-slate-400 dark:text-slate-500'>
+              Monthly schedule with principal, interest, and residual debt
             </p>
           </div>
 

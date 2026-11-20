@@ -15,24 +15,26 @@ export default function EMIForm({ control }: Props) {
   return (
     <Card>
       <div className='flex items-center gap-3 mb-6'>
-        <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-violet-50 text-violet-600'>
-          <Calculator size={22} />
+        <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'>
+          <Calculator size={18} />
         </div>
         <div>
-          <h2 className='text-xl font-extrabold text-slate-900'>EMI Loan Parameters</h2>
-          <p className='text-xs text-slate-400'>
-            Configure product cost, down payment, and installment tenure
+          <h2 className='text-base font-bold text-slate-900 dark:text-slate-100'>
+            EMI Financing Parameters
+          </h2>
+          <p className='text-xs text-slate-400 dark:text-slate-500'>
+            Specify product price, down payment, interest rate, and duration
           </p>
         </div>
       </div>
 
-      <div className='grid gap-5 md:grid-cols-2'>
+      <div className='grid gap-4 md:grid-cols-2'>
         <Controller
           control={control}
           name='productPrice'
           render={({ field, fieldState }) => (
             <Input
-              label='Product Price ($)'
+              label='Retail Price ($)'
               type='number'
               step='0.01'
               error={fieldState.error?.message}

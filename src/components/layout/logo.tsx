@@ -5,25 +5,25 @@ export default function Logo() {
   return (
     <Link
       to='/'
-      className='group flex items-center gap-3 transition-transform duration-200 active:scale-95'
+      className='group flex items-center gap-2.5 transition-opacity hover:opacity-90 active:scale-[0.98]'
     >
-      <div className='relative flex h-11 w-11 items-center justify-center rounded-2xl bg-linear-to-tr from-blue-600 via-indigo-600 to-emerald-400 p-2 text-white shadow-lg shadow-indigo-500/25 transition-all duration-300 group-hover:shadow-indigo-500/40 group-hover:scale-105'>
-        <Wallet size={22} className='transition-transform group-hover:rotate-6' />
-        <span className='absolute -top-1 -right-1 flex h-3 w-3'>
+      <div className='relative flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-white shadow-xs dark:bg-white dark:text-slate-900 transition-transform group-hover:scale-105'>
+        <Wallet size={18} />
+        <span className='absolute -top-0.5 -right-0.5 flex h-2 w-2'>
           <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75' />
-          <span className='relative inline-flex h-3 w-3 rounded-full bg-emerald-500' />
+          <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-500' />
         </span>
       </div>
 
       <div>
         <div className='flex items-center gap-1.5'>
-          <h1 className='text-base font-extrabold tracking-tight text-slate-900'>
-            Finance<span className='bg-linear-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent'>Toolkit</span>
-          </h1>
-          <Sparkles size={12} className='text-indigo-500' />
+          <span className='text-sm font-extrabold tracking-tight text-slate-900 dark:text-slate-100'>
+            Finance<span className='text-indigo-600 dark:text-indigo-400'>Toolkit</span>
+          </span>
+          <Sparkles size={11} className='text-amber-500' />
         </div>
-        <p className='text-[11px] font-medium tracking-wider text-slate-400 uppercase'>
-          Smart Financial Suite
+        <p className='text-[10px] font-semibold tracking-wider text-slate-400 dark:text-slate-500 uppercase'>
+          Suite
         </p>
       </div>
     </Link>

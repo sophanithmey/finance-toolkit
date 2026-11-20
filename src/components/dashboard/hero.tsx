@@ -1,85 +1,71 @@
-import { ArrowRight, CalendarDays, Coins, HandCoins, Sparkles, TrendingUp } from 'lucide-react';
+import { ArrowRight, Coins, HandCoins, Sparkles, TrendingUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Hero() {
   const now = new Date();
   const greeting =
     now.getHours() < 12
-      ? 'Good Morning'
+      ? 'Good morning'
       : now.getHours() < 18
-        ? 'Good Afternoon'
-        : 'Good Evening';
+        ? 'Good afternoon'
+        : 'Good evening';
 
   const dateStr = now.toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
+    weekday: 'short',
+    month: 'short',
     day: 'numeric',
-    year: 'numeric',
   });
 
   return (
-    <section className='relative overflow-hidden rounded-3xl bg-linear-to-br from-indigo-900 via-indigo-950 to-slate-950 p-6 sm:p-10 text-white shadow-2xl border border-indigo-800/40'>
-      {/* Ambient background spheres & grid pattern */}
-      <div className='pointer-events-none absolute -right-16 -top-16 h-72 w-72 rounded-full bg-indigo-500/20 blur-3xl' />
-      <div className='pointer-events-none absolute -bottom-16 left-1/4 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl' />
-      <div className='pointer-events-none absolute right-1/4 bottom-0 h-48 w-48 rounded-full bg-emerald-500/10 blur-2xl' />
-
-      <div className='relative z-10 flex flex-col justify-between gap-8 lg:flex-row lg:items-center'>
-        <div className='max-w-2xl space-y-4'>
-          <div className='inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-500/10 px-3.5 py-1.5 text-xs font-semibold text-indigo-300 backdrop-blur-md'>
-            <Sparkles size={13} className='text-amber-400' />
-            <span>{greeting} • Smart Finance Suite</span>
+    <section className='relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-xs dark:border-slate-800/80 dark:bg-slate-900'>
+      <div className='relative z-10 flex flex-col justify-between gap-6 lg:flex-row lg:items-center'>
+        <div className='max-w-2xl space-y-3'>
+          <div className='inline-flex items-center gap-1.5 rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300'>
+            <Sparkles size={13} className='text-amber-500' />
+            <span>{greeting} • Smart Finance Toolkit</span>
           </div>
 
-          <h1 className='text-3xl sm:text-5xl font-black tracking-tight leading-tight'>
-            Track. Calculate.{' '}
-            <span className='bg-linear-to-r from-indigo-300 via-cyan-300 to-emerald-300 bg-clip-text text-transparent'>
-              Grow Smarter.
-            </span>
+          <h1 className='text-2xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100'>
+            All-in-one financial calculation & market intelligence suite.
           </h1>
 
-          <p className='text-sm sm:text-base text-indigo-200/90 leading-relaxed max-w-xl'>
-            Real-time gold market data, live foreign exchange conversion, loan amortization schedules, EMI breakdowns, and group bill settlements in one dashboard.
+          <p className='text-xs sm:text-sm text-slate-500 leading-relaxed max-w-xl dark:text-slate-400'>
+            Real-time gold benchmarks, live currency rates, loan amortization schedules, and group bill splits with zero friction.
           </p>
 
-          <div className='flex flex-wrap items-center gap-3 pt-2'>
+          <div className='flex flex-wrap items-center gap-2.5 pt-2'>
             <Link
               to='/loan'
-              className='inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 text-xs sm:text-sm font-bold text-slate-900 shadow-lg hover:bg-indigo-50 hover:shadow-indigo-500/25 transition-all duration-200 active:scale-95'
+              className='inline-flex items-center gap-2 rounded-xl bg-slate-900 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-slate-800 transition-colors dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100'
             >
-              <HandCoins size={16} className='text-indigo-600' />
-              <span>Loan Schedule</span>
-              <ArrowRight size={14} />
+              <HandCoins size={14} />
+              <span>Loan Amortization</span>
+              <ArrowRight size={13} />
             </Link>
 
             <Link
               to='/gold'
-              className='inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 text-xs sm:text-sm font-bold text-white backdrop-blur-md hover:bg-white/20 transition-all duration-200 active:scale-95'
+              className='inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300 dark:hover:bg-slate-800'
             >
-              <Coins size={16} className='text-amber-400' />
+              <Coins size={14} className='text-amber-500' />
               <span>Gold Price</span>
             </Link>
 
             <Link
               to='/exchange'
-              className='inline-flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-3 text-xs sm:text-sm font-bold text-white backdrop-blur-md hover:bg-white/20 transition-all duration-200 active:scale-95'
+              className='inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors dark:border-slate-800 dark:bg-slate-800/80 dark:text-slate-300 dark:hover:bg-slate-800'
             >
-              <TrendingUp size={16} className='text-emerald-400' />
+              <TrendingUp size={14} className='text-emerald-500' />
               <span>Exchange Rates</span>
             </Link>
           </div>
         </div>
 
-        {/* Date & Status Chip */}
-        <div className='flex flex-col gap-3 sm:items-start lg:items-end'>
-          <div className='flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md'>
-            <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/20 text-indigo-300'>
-              <CalendarDays size={20} />
-            </div>
-            <div>
-              <p className='text-xs font-medium text-indigo-300'>Today's Date</p>
-              <p className='text-sm font-bold text-white'>{dateStr}</p>
-            </div>
+        {/* Date / Live Tag */}
+        <div className='flex items-center lg:flex-col lg:items-end justify-between border-t border-slate-100 pt-4 lg:border-t-0 lg:pt-0 dark:border-slate-800'>
+          <div className='text-left lg:text-right'>
+            <p className='text-[10px] font-bold uppercase tracking-wider text-slate-400'>Today</p>
+            <p className='text-sm font-bold text-slate-900 dark:text-slate-100'>{dateStr}</p>
           </div>
         </div>
       </div>

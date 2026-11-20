@@ -33,18 +33,20 @@ export default function ExchangeForm({
   return (
     <Card>
       <div className='flex items-center gap-3 mb-6'>
-        <div className='flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 text-amber-600'>
-          <ArrowLeftRight size={22} />
+        <div className='flex h-10 w-10 items-center justify-center rounded-xl bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-200'>
+          <ArrowLeftRight size={18} />
         </div>
         <div>
-          <h2 className='text-xl font-extrabold text-slate-900'>Live Currency Converter</h2>
-          <p className='text-xs text-slate-400'>
+          <h2 className='text-base font-bold text-slate-900 dark:text-slate-100'>
+            Currency Converter
+          </h2>
+          <p className='text-xs text-slate-400 dark:text-slate-500'>
             Convert between major global and regional fiat currencies
           </p>
         </div>
       </div>
 
-      <div className='space-y-5'>
+      <div className='space-y-4'>
         <div>
           <Input
             label='Amount to Convert'
@@ -54,17 +56,17 @@ export default function ExchangeForm({
             onChange={(e) => onAmountChange(Number(e.target.value))}
           />
 
-          <div className='mt-2.5 flex flex-wrap items-center gap-1.5'>
-            <span className='text-xs text-slate-400 mr-1'>Presets:</span>
+          <div className='mt-2 flex flex-wrap items-center gap-1.5'>
+            <span className='text-xs text-slate-400 dark:text-slate-500 mr-1'>Presets:</span>
             {presetAmounts.map((val) => (
               <button
                 type='button'
                 key={val}
                 onClick={() => onAmountChange(val)}
-                className={`rounded-xl px-2.5 py-1 text-xs font-semibold transition-all ${
+                className={`rounded-lg px-2.5 py-1 text-xs font-semibold transition-all ${
                   amount === val
-                    ? 'bg-indigo-600 text-white shadow-2xs'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-slate-900 text-white shadow-xs dark:bg-white dark:text-slate-900'
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700'
                 }`}
               >
                 ${val}

@@ -20,13 +20,13 @@ export default function Summary({ friends, expenses }: Props) {
   return (
     <div className='space-y-6'>
       {/* Header with Share & Export actions */}
-      <div className='flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4 dark:border-slate-800'>
+      <div className='flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3 dark:border-slate-800'>
         <div>
-          <h3 className='text-base font-extrabold text-slate-900 dark:text-slate-100'>
+          <h3 className='text-sm font-bold text-slate-900 dark:text-slate-100'>
             Settlement Summary
           </h3>
-          <p className='text-xs text-slate-400'>
-            Overview of expenses, fair shares, and optimal transfers
+          <p className='text-xs text-slate-400 dark:text-slate-500'>
+            Fair share breakdown and optimal peer-to-peer transfers
           </p>
         </div>
 
@@ -38,27 +38,25 @@ export default function Summary({ friends, expenses }: Props) {
         <StatCard
           title='Total Pool Spent'
           value={formatCurrency(summary.totalSpent)}
-          icon={<DollarSign size={24} />}
-          color='from-indigo-500/15 to-blue-500/15 text-indigo-600'
+          icon={<DollarSign size={20} />}
           subtitle={`${expenses.length} expenses logged`}
         />
 
         <StatCard
           title='Fair Share Per Person'
           value={formatCurrency(summary.perPerson)}
-          icon={<Users size={24} />}
-          color='from-cyan-500/15 to-blue-500/15 text-cyan-600'
-          subtitle={`Split equally across ${friends.length} friends`}
+          icon={<Users size={20} />}
+          subtitle={`Split equally across ${friends.length} members`}
         />
       </div>
 
       {/* Individual Paid Amounts */}
-      <div className='rounded-2xl border border-slate-200/80 bg-slate-50/50 p-5 dark:border-slate-800 dark:bg-slate-900/50'>
-        <h4 className='text-xs font-bold uppercase tracking-wider text-slate-400 mb-3'>
-          Contribution Ledger
+      <div className='rounded-2xl border border-slate-200/80 bg-slate-50/50 p-4 dark:border-slate-800 dark:bg-slate-900/50'>
+        <h4 className='text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-3'>
+          Member Contribution Ledger
         </h4>
 
-        <div className='grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3'>
+        <div className='grid gap-2 sm:grid-cols-2 lg:grid-cols-3'>
           {friends.map((friend) => {
             const paid = summary.paidMap[friend.id] || 0;
             const diff = paid - summary.perPerson;
@@ -68,15 +66,15 @@ export default function Summary({ friends, expenses }: Props) {
             return (
               <div
                 key={friend.id}
-                className='flex items-center justify-between rounded-xl border border-slate-200/80 bg-white p-3 shadow-2xs dark:border-slate-800 dark:bg-slate-900'
+                className='flex items-center justify-between rounded-xl border border-slate-200 bg-white p-2.5 shadow-2xs dark:border-slate-800 dark:bg-slate-900'
               >
                 <div>
                   <p className='text-xs font-bold text-slate-900 dark:text-slate-100'>{friend.name}</p>
-                  <p className='text-[11px] text-slate-400'>Paid {formatCurrency(paid)}</p>
+                  <p className='text-[10px] text-slate-400 dark:text-slate-500'>Paid {formatCurrency(paid)}</p>
                 </div>
 
                 <span
-                  className={`rounded-lg px-2 py-0.5 text-xs font-bold ${
+                  className={`rounded-md px-2 py-0.5 text-xs font-bold ${
                     isOwed
                       ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300'
                       : owes
@@ -93,37 +91,37 @@ export default function Summary({ friends, expenses }: Props) {
       </div>
 
       {/* Settlement Transactions */}
-      <div className='rounded-2xl border border-slate-200/80 bg-white p-5 dark:border-slate-800 dark:bg-slate-900'>
-        <div className='flex items-center justify-between mb-4'>
-          <h4 className='text-xs font-bold uppercase tracking-wider text-slate-400'>
+      <div className='rounded-2xl border border-slate-200/80 bg-white p-4 dark:border-slate-800 dark:bg-slate-900'>
+        <div className='flex items-center justify-between mb-3'>
+          <h4 className='text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500'>
             Optimal Debt Settlements
           </h4>
           {summary.settlements.length === 0 && (
-            <span className='inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-0.5 text-xs font-bold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300'>
-              <CheckCircle2 size={13} /> Everyone is Settled!
+            <span className='inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-bold text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300'>
+              <CheckCircle2 size={12} /> Even Split
             </span>
           )}
         </div>
 
         {summary.settlements.length === 0 ? (
-          <div className='flex items-center justify-center gap-2 py-6 text-sm font-semibold text-emerald-600 dark:text-emerald-400'>
-            <CheckCircle2 size={18} />
-            <span>Zero pending debts. All payments are perfectly even! 🎉</span>
+          <div className='flex items-center justify-center gap-2 py-4 text-xs font-semibold text-emerald-600 dark:text-emerald-400'>
+            <CheckCircle2 size={16} />
+            <span>Zero pending transfers. All expenses are balanced!</span>
           </div>
         ) : (
-          <div className='space-y-2.5'>
+          <div className='space-y-2'>
             {summary.settlements.map((item) => (
               <div
                 key={`${item.from}-${item.to}`}
-                className='flex items-center justify-between rounded-xl border border-indigo-100 bg-indigo-50/40 px-4 py-3 text-sm dark:border-indigo-900/40 dark:bg-indigo-950/30'
+                className='flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/60 px-3.5 py-2.5 text-xs dark:border-slate-800 dark:bg-slate-800/40'
               >
                 <div className='flex items-center gap-2 font-bold text-slate-800 dark:text-slate-200'>
-                  <span className='text-indigo-600 dark:text-indigo-400'>{getName(item.from)}</span>
-                  <ArrowRight size={14} className='text-slate-400' />
+                  <span className='text-slate-900 dark:text-slate-100'>{getName(item.from)}</span>
+                  <ArrowRight size={13} className='text-slate-400' />
                   <span className='text-emerald-600 dark:text-emerald-400'>{getName(item.to)}</span>
                 </div>
 
-                <span className='tabular-nums text-base font-black text-slate-900 dark:text-slate-100'>
+                <span className='tabular-nums text-sm font-black text-slate-900 dark:text-slate-100'>
                   {formatCurrency(item.amount)}
                 </span>
               </div>
